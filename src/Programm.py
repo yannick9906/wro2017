@@ -78,17 +78,17 @@ class Main(object):
             time.sleep(0.1)
             self.LMRight.run_timed(time_sp=150, speed_sp=-200)
         elif farbeLinks == 1 and farbeRechts == 6:
-            self.LMLeft.run_timed(time_sp=300, speed_sp=-200)
+            self.LMLeft.run_timed(time_sp=150, speed_sp=-200)
             time.sleep(0.1)
             self.LMLeft.run_timed(time_sp=150, speed_sp=-200)
             self.LMRight.run_timed(time_sp=150, speed_sp=-200)
             time.sleep(0.1)
-            self.LMRight.run_timed(time_sp=300, speed_sp=-200)
+            self.LMRight.run_timed(time_sp=150, speed_sp=-200)
         elif farbeLinks == 6 and farbeRechts == 1:
             self.LMLeft.run_timed(time_sp=150, speed_sp=-200)
             self.LMRight.run_timed(time_sp=150, speed_sp=-200)
         else:
-            self.LMLeft.run_timed(time_sp=150, speed_sp=-200)
+            self.LMLeft.run_timed(time_sp=150, speed_sp=200)
             self.LMRight.run_timed(time_sp=150, speed_sp=-200)
 
     def greiferMantel(self):
@@ -127,17 +127,8 @@ class Main(object):
         self.LMRight.run_timed(time_sp=1000, speed_sp=-100)
 
     def ersterZweig(self):
-        for i in range(5):
-            self.followBlackline()
-        while self.CSRight.color != 1:
-            self.LMLeft.run_to_rel_pos(position_sp=10)
-            self.LMRight.run_to_rel_pos(position_sp=10)
-        self.LMLeft.run_to_rel_pos(position_sp=25)
-        self.LMRight.run_to_rel_pos(position_sp=-25)
-        for i in range(5):
-            self.followBlackline()
-        self.LMLeft.run_to_rel_pos(position_sp=25)
-        self.LMRight.run_to_rel_pos(position_sp=-25)
+        for i in range(12):
+            pass
 #
 #####################################################################################
 # Hauptprogramm:
