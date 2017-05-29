@@ -45,6 +45,7 @@ class Main(object):
         self.LMLeft.run_timed(time_sp=300, speed_sp=-200)
 
     def steinUeberpruefen(self):
+        self.heberHoch()
         self.heberRunter()
         self.greiferAuf()
         time.sleep(2)
@@ -54,8 +55,8 @@ class Main(object):
             self.LMRight.run_timed(time_sp=100, speed_sp=-200)
             farbeGreifer = self.CSGreifer.color
             print(farbeGreifer)
-        self.LMLeft.run_timed(time_sp=300, speed_sp=-200)
-        self.LMRight.run_timed(time_sp=300, speed_sp=-200)
+        self.LMLeft.run_timed(time_sp=1, speed_sp=-200)
+        self.LMRight.run_timed(time_sp=1, speed_sp=-200)
         # AN GREIFER AUF ANPASSEN!!!
         Position = 0
         gedrückt = self.TSGreifer.is_pressed
@@ -63,11 +64,12 @@ class Main(object):
             self.MMGreifer.run_to_abs_pos(position_sp=Position)
             Position += 5
             gedrückt = self.TSGreifer.is_pressed
-        if Position >= -100:
+        if Position >= 100:
             Stein = "Mantel"
         else:
             Stein = "Power"
         farbeStein = self.CSGreifer.color
+        self.heberHoch()
         return Stein, farbeStein
 
     def followBlackline(self):
@@ -112,33 +114,61 @@ class Main(object):
         self.MMHeber.run_to_abs_pos(position_sp=0)
 
     def heberRunter(self):
-        self.MMHeber.run_to_abs_pos(position_sp=-430)
+        self.MMHeber.run_to_abs_pos(position_sp=-440)
 
     def Beginn(self):
-        for i in range(100):
-            self.LMLeft.run_timed(time_sp=275, speed_sp=-600)
-            self.LMRight.run_timed(time_sp=275, speed_sp=-600)
-        time.sleep(1)
-        self.LMLeft.run_timed(time_sp=850, speed_sp=-200)
-        self.LMRight.run_timed(time_sp=850, speed_sp=200)
+        self.LMLeft.run_timed(time_sp=2600, speed_sp=-300)
+        self.LMRight.run_timed(time_sp=2600, speed_sp=-300)
+        time.sleep(5)
+        self.LMLeft.run_timed(time_sp=1000, speed_sp=-200)
+        self.LMRight.run_timed(time_sp=1000, speed_sp=200)
 
     def kleineBewegung(self):
-        self.LMLeft.run_timed(time_sp=1000, speed_sp=-100)
-        self.LMRight.run_timed(time_sp=1000, speed_sp=-100)
+        self.LMLeft.run_timed(time_sp=5000, speed_sp=-100)
+        self.LMRight.run_timed(time_sp=5000, speed_sp=-100)
 
     def ersterZweig(self):
-        for i in range(12):
-            pass
-#
+        self.LMLeft.run_timed(time_sp=600, speed_sp=-200)
+        self.LMRight.run_timed(time_sp=600, speed_sp=200)
+        time.sleep(2)
+        self.LMLeft.run_timed(time_sp=4300, speed_sp=-100)
+        self.LMRight.run_timed(time_sp=4300, speed_sp=-100)
+
+    def rechterZweig(self):
+        self.LMLeft.run_timed(time_sp=500, speed_sp=-200)
+        self.LMRight.run_timed(time_sp=500, speed_sp=200)
+        time.sleep(2)
+        stein, farbeStein = self.steinUeberpruefen()
+        return stein, farbeStein
+
+    def linkerZweig(self):
+        for i in range(4):
+            self.LMLeft.run_timed(time_sp=1000, speed_sp=100)
+            self.LMRight.run_timed(time_sp=1000, speed_sp=100)
+        time.sleep(2)
+        self.LMLeft.run_timed(time_sp=850, speed_sp=200)
+        self.LMRight.run_timed(time_sp=850, speed_sp=-200)
+        stein, farbeStein = self.steinUeberpruefen()
+        return stein, farbeStein
+
+    #
 #####################################################################################
 # Hauptprogramm:
 #####################################################################################
 
     def Programm(self):
         self.Beginn()
-        time.sleep(3)
+        time.sleep(5)
         self.kleineBewegung()
-        #ersterZweig()
+        time.sleep(2.5)
+        self.ersterZweig()
+        time.sleep(5)
+        stein, farbeStein = self.rechterZweig()
+        time.sleep(5)
+        if stein == Mantel:
+            pass
+        else:
+            stein, farbeStein = self.linkerZweig()
 
 # Einrichtung des Roboters:
 m = Main()
