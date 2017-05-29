@@ -29,6 +29,9 @@ class Main(object):
         self.CSLeft = ev3.ColorSensor('in3')
         self.CSRight = ev3.ColorSensor('in4')
 
+        self.LMRight.stop()
+        self.LMLeft.stop()
+
     def readOutSensors(self):
         print('TSGreifer:',self.TSGreifer.is_pressed,'CSGreifer:',self.CSGreifer.color,'CSLeft:',self.CSLeft.color,'CSRight:',self.CSRight.color)
 
