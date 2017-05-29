@@ -29,11 +29,15 @@ class Main(object):
         self.CSLeft = ev3.ColorSensor('in3')
         self.CSRight = ev3.ColorSensor('in4')
 
+    def readOutSensors(self):
+        print('TSGreifer:',self.TSGreifer.is_pressed,'CSGreifer:',self.CSGreifer.color,'CSLeft:',self.CSLeft.color,'CSRight:',self.CSRight.color)
+
     def runToGreenEnd(self):
         self.LMLeft.run_forever()
         self.LMRight.run_forever()
         nogreen = True
         while nogreen:
+            self.readOutSensors()
             nogreen = not(self.CSLeft.color==3 and self.CSRight.color==3)
         self.LMRight.stop()
         self.LMLeft.stop()
