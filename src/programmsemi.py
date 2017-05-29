@@ -38,10 +38,10 @@ class Main(object):
     def runToGreenEnd(self):
         self.LMLeft.run_forever()
         self.LMRight.run_forever()
-        nogreen = True
-        while nogreen:
+        green = True
+        while green:
             self.readOutSensors()
-            nogreen = not(self.CSLeft.color==3 and self.CSRight.color==3)
+            green = self.CSLeft.color==3 and self.CSRight.color==3
         self.LMRight.stop()
         self.LMLeft.stop()
         print("Green end reached.")
