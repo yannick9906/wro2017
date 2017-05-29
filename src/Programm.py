@@ -143,4 +143,3 @@ class Main(object):
 # Einrichtung des Roboters:
 m = Main()
 print('Die kurfuerstlichen Roboter')
-
