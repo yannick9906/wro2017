@@ -60,6 +60,8 @@ class Main(object):
                 self.LMRight.stop()
                 print("Right")
         print("Junction reached.")
+        self.LMLeft.stop()
+        self.LMRight.stop()
 
     def run(self):
         self.runToFirstJunctionFromGreen()
