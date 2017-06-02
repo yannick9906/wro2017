@@ -124,8 +124,8 @@ class Main(object):
         self.LMLeft.run_timed(time_sp=2600, speed_sp=-300)
         self.LMRight.run_timed(time_sp=2600, speed_sp=-300)
         time.sleep(5)
-        self.LMLeft.run_timed(time_sp=1100, speed_sp=-200)
-        self.LMRight.run_timed(time_sp=1100, speed_sp=200)
+        self.LMLeft.run_timed(time_sp=1000, speed_sp=-200)
+        self.LMRight.run_timed(time_sp=1000, speed_sp=200)
 
     def kleineBewegung(self):
         self.LMLeft.run_timed(time_sp=5000, speed_sp=-100)
@@ -156,9 +156,8 @@ class Main(object):
         return stein, farbeStein, strecke
 
     def ersterZweigRueckweg(self, rechts, strecke):
-        weg = strecke * 100
-        self.LMLeft.run_timed(time_sp=weg, speed_sp=200)
-        self.LMRight.run_timed(time_sp=weg, speed_sp=200)
+        self.LMLeft.run_timed(time_sp=500, speed_sp=200)
+        self.LMRight.run_timed(time_sp=500, speed_sp=200)
         time.sleep(5)
         if rechts == True:
              pass
@@ -178,6 +177,7 @@ class Main(object):
         time.sleep(1)
         self.LMLeft.run_timed(time_sp=4500, speed_sp=100)
         self.LMRight.run_timed(time_sp=4500, speed_sp=100)
+        time.sleep(5)
 
     def FollowBlackLineBack(self):
         farbeLinks = self.CSLeft.color
@@ -261,8 +261,8 @@ class Main(object):
             self.LMLeft.run_timed(time_sp=550, speed_sp=-200)
             self.LMRight.run_timed(time_sp=550, speed_sp=200)
             time.sleep(1)
-            self.LMLeft.run_timed(time_sp=4500, speed_sp=100)
-            self.LMRight.run_timed(time_sp=4500, speed_sp=100)
+            self.LMLeft.run_timed(time_sp=4000, speed_sp=100)
+            self.LMRight.run_timed(time_sp=4000, speed_sp=100)
             time.sleep(5)
             self.LMLeft.run_timed(time_sp=1100, speed_sp=200)
             self.LMRight.run_timed(time_sp=1100, speed_sp=-200)
