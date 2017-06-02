@@ -40,10 +40,12 @@ class Main(object):
     def rotate90DegLeft(self):
         self.LMLeft.run_timed(time_sp=1100)
         self.LMRight.run_timed(time_sp=1100,speed_sp=-200)
+        time.sleep(1.1)
 
     def rotate90DegRight(self):
         self.LMRight.run_timed(time_sp=1100)
         self.LMLeft.run_timed(time_sp=1100,speed_sp=-200)
+        time.sleep(1.1)
 
     def runToGreenEnd(self):
         self.LMLeft.run_forever()
@@ -78,7 +80,7 @@ class Main(object):
 
     def run(self):
         self.runToFirstJunctionFromGreen()
-        self.rotate90DegLeft()
+        self.rotate90DegRight()
         self.runToNextJunction()
 
 m = Main()
