@@ -8,11 +8,11 @@ class Main(object):
     def __init__(self):
         # Motoren:
         self.LMLeft = ev3.LargeMotor('outB')
-        self.LMLeft.speed_sp = -200
+        self.LMLeft.speed_sp = 200
         self.LMLeft.ramp_up_sp = 100
         self.LMLeft.ramp_down_sp = 100
         self.LMRight = ev3.LargeMotor('outD')
-        self.LMRight.speed_sp = -200
+        self.LMRight.speed_sp = 200
         self.LMRight.ramp_up_sp = 100
         self.LMRight.ramp_down_sp = 100
         self.MMHeber = ev3.MediumMotor('outC')
@@ -37,6 +37,14 @@ class Main(object):
     def readOutSensors(self):
         print('TSGreifer:',self.TSGreifer.is_pressed,'CSGreifer:',self.CSGreifer.color,'CSLeft:',self.CSLeft.color,'CSRight:',self.CSRight.color)
 
+    def rotate90DegLeft(self):
+        self.LMLeft.run_timed(time_sp=1100)
+        self.LMRight.run_timed(time_sp=1100,speed_sp=-200)
+
+    def rotate90DegRight(self):
+        self.LMRight.run_timed(time_sp=1100)
+        self.LMLeft.run_timed(time_sp=1100,speed_sp=-200)
+
     def runToGreenEnd(self):
         self.LMLeft.run_forever()
         self.LMRight.run_forever()
@@ -50,6 +58,11 @@ class Main(object):
 
     def runToFirstJunctionFromGreen(self):
         self.runToGreenEnd()
+        self.runToNextJunction()
+
+    def runToNextJunction(self):
+        self.LMLeft.speed_sp = 200
+        self.LMRight.speed_sp = 200
         while not(self.CSRight.color==1 and self.CSLeft.color==1):
             self.LMLeft.run_forever()
             self.LMRight.run_forever()
@@ -65,6 +78,8 @@ class Main(object):
 
     def run(self):
         self.runToFirstJunctionFromGreen()
+        self.rotate90DegLeft()
+        self.runToNextJunction()
 
 m = Main()
 m.run()
