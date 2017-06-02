@@ -8,9 +8,11 @@ class Main(object):
     def __init__(self):
         # Motoren:
         self.LMLeft = ev3.LargeMotor('outB')
+        self.LMLeft.speed_sp = -200
         self.LMLeft.ramp_up_sp = 100
         self.LMLeft.ramp_down_sp = 100
         self.LMRight = ev3.LargeMotor('outD')
+        self.LMRight.speed_sp = -200
         self.LMRight.ramp_up_sp = 100
         self.LMRight.ramp_down_sp = 100
         self.MMHeber = ev3.MediumMotor('outC')
@@ -41,7 +43,7 @@ class Main(object):
         green = True
         while green:
             self.readOutSensors()
-            green = self.CSLeft.color==3 and self.CSRight.color==3
+            green = (self.CSLeft.color==3 or self.CSLeft.color==2) and (self.CSRight.color==3 or self.CSRight.color==2)
         self.LMRight.stop()
         self.LMLeft.stop()
         print("Green end reached.")
