@@ -509,6 +509,10 @@ class Main(object):
         text = "Rueckweg von dritter Kreuzung beginnt!"
         self.textSchreiben(text)
         self.dritterZweigRueckweg(rechtsD, strecke)
+        farbeStein = self.ZielPlatzieren()
+        text = "Rueckkehr vom Fundament wird angetreten!"
+        self.Zielzurueck(farbeStein)
+        self.zurBase()
 
 #Einrichtung des Roboters:
 m = Main()
